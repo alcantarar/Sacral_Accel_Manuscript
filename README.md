@@ -26,12 +26,13 @@ to install the version of the packages used to produce the results and figure in
 performed with `R version 3.6.3 (2020-02-29)`:
 ```
 # Install versioned packages used for analysis (if needed): ----
-require(remotes)
-install_version('caret', version = '6.0-85', repos = 'http://cran.us.r-project.org')
-install_version('quantregForest', version = '1.3-7', repos = 'http://cran.us.r-project.org')
-install_version('tidyr', version = '1.0.2', repos = 'http://cran.us.r-project.org')
-install_version('ggthemes', version = '4.2.0', repos = 'http://cran.us.r-project.org')
-install_version('ggridges', version = '0.5.2', repos = 'https://cran.us.r-project.org')
+# install.packages(remotes)
+# library(remotes)
+# install_version('caret', version = '6.0-85', repos = 'http://cran.us.r-project.org')
+# install_version('quantregForest', version = '1.3-7', repos = 'http://cran.us.r-project.org')
+# install_version('tidyr', version = '1.0.2', repos = 'http://cran.us.r-project.org')
+# install_version('ggthemes', version = '4.2.0', repos = 'http://cran.us.r-project.org')
+# install_version('ggridges', version = '0.5.2', repos = 'https://cran.us.r-project.org')
 ```
 Running the rest of the script from source will produce the reported MAPE/RMSE values and the subplots in Figure 1.
 
