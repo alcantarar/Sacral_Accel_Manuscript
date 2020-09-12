@@ -1,11 +1,11 @@
 # Install versioned packages used for analysis (if needed): ----
 # install.packages(remotes)
 # library('remotes')
-# install_version('caret', version = '6.0-85', repos = 'http://cran.us.r-project.org')
-# install_version('quantregForest', version = '1.3-7', repos = 'http://cran.us.r-project.org')
-# install_version('tidyr', version = '1.0.2', repos = 'http://cran.us.r-project.org')
-# install_version('ggthemes', version = '4.2.0', repos = 'http://cran.us.r-project.org')
-# install_version('ggridges', version = '0.5.2', repos = 'https://cran.us.r-project.org')
+# install_version('caret', version = '6.0-85', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('quantregForest', version = '1.3-7', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('tidyr', version = '1.0.2', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('ggthemes', version = '4.2.0', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('ggridges', version = '0.5.2', dependencies = TRUE, repos = 'https://cran.us.r-project.org')
 
 # Load Libraries ----
 # needed for analysis
