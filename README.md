@@ -28,15 +28,14 @@ performed with `R version 3.6.3 (2020-02-29)`:
 # Install versioned packages used for analysis (if needed): ----
 # install.packages('remotes')
 # library(remotes)
-# install_version('caret', version = '6.0-85', repos = 'http://cran.us.r-project.org')
-# install_version('quantregForest', version = '1.3-7', repos = 'http://cran.us.r-project.org')
-# install_version('tidyr', version = '1.0.2', repos = 'http://cran.us.r-project.org')
-# install_version('ggthemes', version = '4.2.0', repos = 'http://cran.us.r-project.org')
-# install_version('ggridges', version = '0.5.2', repos = 'https://cran.us.r-project.org')
+# install_version('caret', version = '6.0-85', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('quantregForest', version = '1.3-7', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('tidyr', version = '1.0.2', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('ggthemes', version = '4.2.0', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
+# install_version('ggridges', version = '0.5.2', dependencies = TRUE, repos = 'https://cran.us.r-project.org')
 ```
 
-If prompted to upgrade packages like below, enter the number coresponding to `None` so that dependencies are not updated 
-and the exact package versions used in the manuscript is replicated:
+If prompted to upgrade packages, enter `2` and press enter to install CRAN packages only (this may take a while):
 ```
 These packages have more recent versions available.
 It is recommended to update all of them.
