@@ -1,4 +1,9 @@
 # Install versioned packages used for analysis (if needed): ----
+# A few sub-dependencies that don't always cooperate with install_version():
+# install.packages('gower')
+# install.packages('systemfonts')
+# install.packages('gdtools')
+# Primary dependencies:
 # install.packages(remotes)
 # library('remotes')
 # install_version('caret', version = '6.0-85', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
