@@ -270,7 +270,7 @@ plot_MR_pred_obs <- function(df, x, y, titlename, show.lm){
   
   p <- p + 
     theme_classic()+
-    ggtitle(paste(titlename, '- Quantile Regression Forest'))+
+    ggtitle(paste(titlename, '- Linear Regression'))+
     coord_fixed(xlim = lims, ylim = lims)+
     scale_y_continuous(ytit, breaks = break_nums)+
     scale_x_continuous(xtit, breaks = break_nums)+
