@@ -21,9 +21,12 @@
     | `IMUsf`       | Step frequency calculated from sacrum acceleration data (Hz) |
   
 ## Reproducibility Instructions
+The analysis was performed with `R version 3.6.3 (2020-02-29)`. Reproducibility results may vary with different versions,
+in particular those < `3.6.0`. See [this stack overflow post](https://stackoverflow.com/questions/47199415/is-set-seed-consistent-over-different-versions-of-r-and-ubuntu)
+and the documentation for `sample.kind` and `RNGversion` [here](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Random.html).
+
 To replicate the environment used to perform the analysis, run the first couple of commented out lines in `analysis.R`
-to install the version of the packages used to produce the results and figure in the manuscript. The analysis was 
-performed with `R version 3.6.3 (2020-02-29)`:
+to install the version of the packages used to produce the results and figure in the manuscript:
 ```
 # Install versioned packages used for analysis (if needed): ----
 # install.packages('remotes')
@@ -31,11 +34,12 @@ performed with `R version 3.6.3 (2020-02-29)`:
 # install_version('caret', version = '6.0-85', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
 # install_version('quantregForest', version = '1.3-7', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
 # install_version('tidyr', version = '1.0.2', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
-# install_version('ggthemes', version = '4.2.0', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
-# install_version('ggridges', version = '0.5.2', dependencies = FALSE, repos = 'https://cran.us.r-project.org')
+# install_version('ggthemes', version = '4.2.0', dependencies = TRUE, repos = 'http://cran.us.r-project.org')  # may need {gdtools} and/or {systemfonts}
+# install_version('ggridges', version = '0.5.2', dependencies = TRUE, repos = 'https://cran.us.r-project.org')
 ```
 
-If prompted to upgrade packages, enter the number for `CRAN packages only` and press enter (this may take a while):
+There may be additional dependencies that should be loaded via `install.packages()`. If prompted to upgrade packages, 
+skip and press enter (this may take a while):
 ```
 These packages have more recent versions available.
 It is recommended to update all of them.
