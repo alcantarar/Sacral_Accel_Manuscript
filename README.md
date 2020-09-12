@@ -35,7 +35,7 @@ performed with `R version 3.6.3 (2020-02-29)`:
 # install_version('ggridges', version = '0.5.2', dependencies = TRUE, repos = 'https://cran.us.r-project.org')
 ```
 
-If prompted to upgrade packages, just press enter to skip updates (this may take a while):
+If prompted to upgrade packages, enter the number for `CRAN packages only` and press enter (this may take a while):
 ```
 These packages have more recent versions available.
 It is recommended to update all of them.
