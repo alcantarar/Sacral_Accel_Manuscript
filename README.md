@@ -34,6 +34,22 @@ performed with `R version 3.6.3 (2020-02-29)`:
 # install_version('ggthemes', version = '4.2.0', repos = 'http://cran.us.r-project.org')
 # install_version('ggridges', version = '0.5.2', repos = 'https://cran.us.r-project.org')
 ```
+
+If prompted to upgrade packages like below, enter the number coresponding to `None` so that dependencies are not updated 
+and the exact package versions used in the manuscript is replicated:
+```
+These packages have more recent versions available.
+It is recommended to update all of them.
+Which would you like to update?
+
+1: ALL
+2: CRAN packages only
+3: None
+.
+.
+.
+Enter one or more numbers, or an empty line to skip updates:
+```
 Running the rest of the script from source will produce the reported MAPE/RMSE values and the subplots in Figure 1.
 
 ## Contributions
