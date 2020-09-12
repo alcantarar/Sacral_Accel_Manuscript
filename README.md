@@ -29,8 +29,13 @@ To replicate the environment used to perform the analysis, run the first couple 
 to install the version of the packages used to produce the results and figure in the manuscript:
 ```
 # Install versioned packages used for analysis (if needed): ----
-# install.packages('remotes')
-# library(remotes)
+# A few sub-dependencies that don't always cooperate with install_version():
+# install.packages('gower')
+# install.packages('systemfonts')
+# install.packages('gdtools')
+# Primary dependencies:
+# install.packages(remotes)
+# library('remotes')
 # install_version('caret', version = '6.0-85', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
 # install_version('quantregForest', version = '1.3-7', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
 # install_version('tidyr', version = '1.0.2', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
