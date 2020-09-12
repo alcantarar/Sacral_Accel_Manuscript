@@ -1,6 +1,6 @@
 # Install versioned packages used for analysis (if needed): ----
 # install.packages(remotes)
-# library(remotes)
+# library('remotes')
 # install_version('caret', version = '6.0-85', repos = 'http://cran.us.r-project.org')
 # install_version('quantregForest', version = '1.3-7', repos = 'http://cran.us.r-project.org')
 # install_version('tidyr', version = '1.0.2', repos = 'http://cran.us.r-project.org')
