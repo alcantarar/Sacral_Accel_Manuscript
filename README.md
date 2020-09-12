@@ -32,7 +32,7 @@ performed with `R version 3.6.3 (2020-02-29)`:
 # install_version('quantregForest', version = '1.3-7', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
 # install_version('tidyr', version = '1.0.2', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
 # install_version('ggthemes', version = '4.2.0', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
-# install_version('ggridges', version = '0.5.2', dependencies = TRUE, repos = 'https://cran.us.r-project.org')
+# install_version('ggridges', version = '0.5.2', dependencies = FALSE, repos = 'https://cran.us.r-project.org')
 ```
 
 If prompted to upgrade packages, enter the number for `CRAN packages only` and press enter (this may take a while):
