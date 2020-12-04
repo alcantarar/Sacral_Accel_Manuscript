@@ -1,16 +1,10 @@
 # Install versioned packages used for analysis (if needed): ----
-# A few sub-dependencies that don't always cooperate with install_version():
-# install.packages('gower')
-# install.packages('systemfonts')
-# install.packages('gdtools')
-# Primary dependencies:
-# install.packages(remotes)
-# library('remotes')
-# install_version('caret', version = '6.0-85', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
-# install_version('quantregForest', version = '1.3-7', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
-# install_version('tidyr', version = '1.0.2', dependencies = TRUE, repos = 'http://cran.us.r-project.org')
-# install_version('ggthemes', version = '4.2.0', dependencies = TRUE, repos = 'http://cran.us.r-project.org')  # may need {gdtools} and/or {systemfonts}
-# install_version('ggridges', version = '0.5.2', dependencies = TRUE, repos = 'https://cran.us.r-project.org')
+# require(remotes)
+# install_version('caret', version = '6.0-85', repos = 'http://cran.us.r-project.org')
+# install_version('quantregForest', version = '1.3-7', repos = 'http://cran.us.r-project.org')
+# install_version('tidyr', version = '1.0.2', repos = 'http://cran.us.r-project.org')
+# install_version('ggthemes', version = '4.2.0', repos = 'http://cran.us.r-project.org')
+# install_version('ggridges', version = '0.5.2', repos = 'https://cran.us.r-project.org')
 
 # Load Libraries ----
 # needed for analysis
@@ -128,28 +122,36 @@ tc.accuracy$formula <- Reduce(paste, deparse(formula.tc))
 model_accuracy <- rbind(peak.accuracy,impulse.accuracy, tc.accuracy)
 View(model_accuracy)
 
-# Calculate Average (+/- SD) MAPE across test subjects and compare models ----
+# Calculate Average (+/- SD) MAPE and RMSE across test subjects and compare models ----
+mape <- function (act, pred)
+{
+  return(abs(act - pred)/abs(act)*100)
+}
 # Quantile random forest (qrf)
 #Peak vGRF
-mean(abs(test.data$GRFPeak - test.data$qrf.peak)/abs(test.data$GRFPeak))*100
-sd(abs(test.data$GRFPeak - test.data$qrf.peak)/abs(test.data$GRFPeak))
+mean(mape(test.data$GRFPeak, test.data$qrf.peak))
+sd(mape(test.data$GRFPeak, test.data$qrf.peak))
+
 #Vertical Impulse
-mean(abs(test.data$GRFImpulse - test.data$qrf.impulse)/abs(test.data$GRFImpulse))*100
-sd(abs(test.data$GRFImpulse - test.data$qrf.impulse)/abs(test.data$GRFImpulse))
+mean(mape(test.data$GRFImpulse, test.data$qrf.impulse))
+sd(mape(test.data$GRFImpulse, test.data$qrf.impulse))
+
 #Contact Time
-mean(abs(test.data$GRFtc - test.data$qrf.tc)/abs(test.data$GRFtc))*100
-sd(abs(test.data$GRFtc - test.data$qrf.tc)/abs(test.data$GRFtc))
+mean(mape(test.data$GRFtc, test.data$qrf.tc))
+sd(mape(test.data$GRFtc, test.data$qrf.tc))
 
 # Linear model (lm)
 #Peak vGRF
-mean(abs(test.data$GRFPeak - test.data$lm.peak)/abs(test.data$GRFPeak))*100
-sd(abs(test.data$GRFPeak - test.data$lm.peak)/abs(test.data$GRFPeak))
+mean(mape(test.data$GRFPeak, test.data$lm.peak))
+sd(mape(test.data$GRFPeak, test.data$lm.peak))
+
 #Vertical Impulse
-mean(abs(test.data$GRFImpulse - test.data$lm.impulse)/abs(test.data$GRFImpulse))*100
-sd(abs(test.data$GRFImpulse - test.data$lm.impulse)/abs(test.data$GRFImpulse))
+mean(mape(test.data$GRFImpulse, test.data$lm.impulse))
+sd(mape(test.data$GRFImpulse, test.data$lm.impulse))
+
 #Contact Time
-mean(abs(test.data$GRFtc - test.data$lm.tc)/abs(test.data$GRFtc))*100
-sd(abs(test.data$GRFtc - test.data$lm.tc)/abs(test.data$GRFtc))
+mean(mape(test.data$GRFtc, test.data$lm.tc))
+sd(mape(test.data$GRFtc, test.data$lm.tc))
 
 # Calculate Paired T-Tests Bewtween QRF & LR ----
 #QRF
@@ -275,7 +277,7 @@ plot_MR_pred_obs <- function(df, x, y, titlename, show.lm){
   
   p <- p + 
     theme_classic()+
-    ggtitle(paste(titlename, '- Linear Regression'))+
+    ggtitle(paste(titlename, '- Quantile Regression Forest'))+
     coord_fixed(xlim = lims, ylim = lims)+
     scale_y_continuous(ytit, breaks = break_nums)+
     scale_x_continuous(xtit, breaks = break_nums)+
