@@ -128,28 +128,36 @@ tc.accuracy$formula <- Reduce(paste, deparse(formula.tc))
 model_accuracy <- rbind(peak.accuracy,impulse.accuracy, tc.accuracy)
 View(model_accuracy)
 
-# Calculate Average (+/- SD) MAPE across test subjects and compare models ----
+# Calculate Average (+/- SD) MAPE and RMSE across test subjects and compare models ----
+mape <- function (act, pred)
+{
+  return(abs(act - pred)/abs(act)*100)
+}
 # Quantile random forest (qrf)
 #Peak vGRF
-mean(abs(test.data$GRFPeak - test.data$qrf.peak)/abs(test.data$GRFPeak))*100
-sd(abs(test.data$GRFPeak - test.data$qrf.peak)/abs(test.data$GRFPeak))
+mean(mape(test.data$GRFPeak, test.data$qrf.peak))
+sd(mape(test.data$GRFPeak, test.data$qrf.peak))
+
 #Vertical Impulse
-mean(abs(test.data$GRFImpulse - test.data$qrf.impulse)/abs(test.data$GRFImpulse))*100
-sd(abs(test.data$GRFImpulse - test.data$qrf.impulse)/abs(test.data$GRFImpulse))
+mean(mape(test.data$GRFImpulse, test.data$qrf.impulse))
+sd(mape(test.data$GRFImpulse, test.data$qrf.impulse))
+
 #Contact Time
-mean(abs(test.data$GRFtc - test.data$qrf.tc)/abs(test.data$GRFtc))*100
-sd(abs(test.data$GRFtc - test.data$qrf.tc)/abs(test.data$GRFtc))
+mean(mape(test.data$GRFtc, test.data$qrf.tc))
+sd(mape(test.data$GRFtc, test.data$qrf.tc))
 
 # Linear model (lm)
 #Peak vGRF
-mean(abs(test.data$GRFPeak - test.data$lm.peak)/abs(test.data$GRFPeak))*100
-sd(abs(test.data$GRFPeak - test.data$lm.peak)/abs(test.data$GRFPeak))
+mean(mape(test.data$GRFPeak, test.data$lm.peak))
+sd(mape(test.data$GRFPeak, test.data$lm.peak))
+
 #Vertical Impulse
-mean(abs(test.data$GRFImpulse - test.data$lm.impulse)/abs(test.data$GRFImpulse))*100
-sd(abs(test.data$GRFImpulse - test.data$lm.impulse)/abs(test.data$GRFImpulse))
+mean(mape(test.data$GRFImpulse, test.data$lm.impulse))
+sd(mape(test.data$GRFImpulse, test.data$lm.impulse))
+
 #Contact Time
-mean(abs(test.data$GRFtc - test.data$lm.tc)/abs(test.data$GRFtc))*100
-sd(abs(test.data$GRFtc - test.data$lm.tc)/abs(test.data$GRFtc))
+mean(mape(test.data$GRFtc, test.data$lm.tc))
+sd(mape(test.data$GRFtc, test.data$lm.tc))
 
 # Calculate Paired T-Tests Bewtween QRF & LR ----
 #QRF
