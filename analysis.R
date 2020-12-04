@@ -302,3 +302,105 @@ plot_MR_pred_obs <- function(df, x, y, titlename, show.lm){
 plot_MR_pred_obs(test.data, test.data$lm.peak, test.data$GRFPeak, 'Peak', show.lm = F)  # MR_peak.eps
 plot_MR_pred_obs(test.data, test.data$lm.impulse, test.data$GRFImpulse, 'Impulse', show.lm = F)  # MR_impulse.eps
 plot_MR_pred_obs(test.data, test.data$lm.tc, test.data$GRFtc, 'tc', show.lm = F)  # MR_tc.eps
+
+
+## calculate mean (SD) peak vgrf, vertical impulse, and contact time for Table 3 ----
+# Males
+isfem <- 0
+speeds <- c(3.8, 4.1, 5.4)
+
+## Females
+# isfem <- 1
+# speeds <- c(3.8, 4.8)
+
+## Treadmill Data ----
+results_peak <- matrix(ncol = 7, nrow=length(speeds))
+results_impulse <- matrix(ncol=7, nrow=length(speeds))
+results_tc <- matrix(ncol=7, nrow=length(speeds))
+
+results_peak[,1] <- speeds
+results_impulse[,1] <- speeds
+results_tc[,1] <- speeds
+
+# peak
+c <- 1
+for (i in speeds){
+  results_peak[c,2] <- mean(test.data$GRFPeak[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_peak[c,3] <- sd(test.data$GRFPeak[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+# impulse
+c <- 1
+for (i in speeds){
+  results_impulse[c,2] <- mean(test.data$GRFImpulse[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_impulse[c,3] <- sd(test.data$GRFImpulse[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+# tc
+c <- 1
+for (i in speeds){
+  results_tc[c,2] <- mean(test.data$GRFtc[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_tc[c,3] <- sd(test.data$GRFtc[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+
+## QRF predictions ----
+# peak
+c <- 1
+for (i in speeds){
+  results_peak[c,4] <- mean(test.data$qrf.peak[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_peak[c,5] <- sd(test.data$qrf.peak[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+# impulse
+c <- 1
+for (i in speeds){
+  results_impulse[c,4] <- mean(test.data$qrf.impulse[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_impulse[c,5] <- sd(test.data$qrf.impulse[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+# tc
+c <- 1
+for (i in speeds){
+  results_tc[c,4] <- mean(test.data$qrf.tc[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_tc[c,5] <- sd(test.data$qrf.tc[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+
+## LR predictions ----
+# peak
+c <- 1
+for (i in speeds){
+  results_peak[c,6] <- mean(test.data$lm.peak[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_peak[c,7] <- sd(test.data$lm.peak[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+# impulse
+c <- 1
+for (i in speeds){
+  results_impulse[c,6] <- mean(test.data$lm.impulse[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_impulse[c,7] <- sd(test.data$lm.impulse[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+# tc
+c <- 1
+for (i in speeds){
+  results_tc[c,6] <- mean(test.data$lm.tc[test.data$IsFemale == isfem & test.data$Speed == i])
+  results_tc[c,7] <- sd(test.data$lm.tc[test.data$IsFemale == isfem & test.data$Speed == i])
+  c = c+1
+}
+
+cols <- c('Speed', 'Treadmill.Mean', 'Treadmill.SD', 'QRF.Mean', 'QRF.SD', 'LR.Mean', 'LR.SD')
+
+results_peak <- data.frame(results_peak)
+colnames(results_peak) <- cols
+
+results_impulse <- data.frame(results_impulse)
+colnames(results_impulse) <- cols
+
+results_tc <- data.frame(results_tc)
+colnames(results_tc) <- cols
+
+# write.csv(results_peak, 'results_peak.csv')
+# write.csv(results_impulse, 'results_impulse.csv')
+# write.csv(results_tc, 'results_tc.csv')
