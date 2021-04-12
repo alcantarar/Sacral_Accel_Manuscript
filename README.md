@@ -1,5 +1,7 @@
 # Repository for "Sacrum accelerations can predict whole-body kinetic and stride kinematics across running speeds"
 
+Open Access Publication 👉 https://peerj.com/articles/11199/
+
 ## Project Contents
 - **analysis.R** - This is probably the file you're looking for. It trains models, produces RMSE and
  MAPE values, and generates the subplots used in Figure 1. 
