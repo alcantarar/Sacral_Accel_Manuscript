@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "If you use data from this repository, please cite the following publication."
+authors:
+- family-names: "Alcantara"
+  given-names: "Ryan S"
+  orcid: "https://orcid.org/0000-0002-8539-711X"
+- family-names: "Day"
+  given-names: "Evan M"
+- family-names: "Hahn"
+  given-names: "Michael E"
+- family-names: "Grabowski"
+  given-names: "Alena M"
+title: "Sacral acceleration can predict whole-body kinetics and stride kinematics across running speeds"
+doi: 10.7717/peerj.11199
+date-released: 2021-04-12
+url: "https://peerj.com/articles/11199/"
